@@ -13,12 +13,17 @@ builder.Services.AddDbContext<DataContext>(opt=>
 }
 );
 
+builder.Services.AddCors();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+            
 app.MapControllers();
 
 app.Run();
